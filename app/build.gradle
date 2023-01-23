@@ -12,7 +12,7 @@ def getGitHash = { ->
     return stdout.toString().trim()
 }
 
-def defaultAppName = "ESP RainMaker"
+def defaultAppName = "Aurora Borealis"
 def defaultTransport = "Both"
 def defaultSecurity = "Sec1"
 def defaultPoP = ""
