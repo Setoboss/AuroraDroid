@@ -16,7 +16,7 @@ def defaultAppName = "Aurora Borealis"
 def defaultTransport = "Both"
 def defaultSecurity = "Sec1"
 def defaultPoP = ""
-def defaultPrefix = "PROV_"
+def defaultPrefix = "Aurora"
 def defaultWiFiScanSrc = "Device"
 
 def defaultClientId = "60i6kac5f9rjuetqnq5mnmaqv6"
