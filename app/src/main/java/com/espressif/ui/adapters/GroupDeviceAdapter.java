@@ -103,7 +103,7 @@ public class GroupDeviceAdapter extends RecyclerView.Adapter<GroupDeviceAdapter.
 
             } else if (AppConstants.ESP_DEVICE_SWITCH.equals(device.getDeviceType())) {
 
-                myViewHolder.ivDevice.setImageResource(R.drawable.ic_device_switch);
+                myViewHolder.ivDevice.setImageResource(R.drawable.ic_device_aurora_borealis);
 
             } else if (AppConstants.ESP_DEVICE_LOCK.equals(device.getDeviceType())) {
 
@@ -115,7 +115,7 @@ public class GroupDeviceAdapter extends RecyclerView.Adapter<GroupDeviceAdapter.
 
             } else if (AppConstants.ESP_DEVICE_FAN.equals(device.getDeviceType())) {
 
-                myViewHolder.ivDevice.setImageResource(R.drawable.ic_device_fan);
+                myViewHolder.ivDevice.setImageResource(R.drawable.ic_device_moon);
 
             } else if (AppConstants.ESP_DEVICE_SENSOR.equals(device.getDeviceType())) {
 

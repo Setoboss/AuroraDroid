@@ -378,13 +378,13 @@ public class AutomationDetailActivity extends AppCompatActivity {
             } else if (AppConstants.ESP_DEVICE_BULB_RGB.equals(eventDevice.getDeviceType())) {
                 ivEventDevice.setImageResource(R.drawable.ic_device_bulb_rgb);
             } else if (AppConstants.ESP_DEVICE_SWITCH.equals(eventDevice.getDeviceType())) {
-                ivEventDevice.setImageResource(R.drawable.ic_device_switch);
+                ivEventDevice.setImageResource(R.drawable.ic_device_aurora_borealis);
             } else if (AppConstants.ESP_DEVICE_LOCK.equals(eventDevice.getDeviceType())) {
                 ivEventDevice.setImageResource(R.drawable.ic_device_lock);
             } else if (AppConstants.ESP_DEVICE_THERMOSTAT.equals(eventDevice.getDeviceType())) {
                 ivEventDevice.setImageResource(R.drawable.ic_device_thermostat);
             } else if (AppConstants.ESP_DEVICE_FAN.equals(eventDevice.getDeviceType())) {
-                ivEventDevice.setImageResource(R.drawable.ic_device_fan);
+                ivEventDevice.setImageResource(R.drawable.ic_device_moon);
             } else if (AppConstants.ESP_DEVICE_SENSOR.equals(eventDevice.getDeviceType())) {
                 ivEventDevice.setImageResource(R.drawable.ic_device);
             } else if (AppConstants.ESP_DEVICE_TEMP_SENSOR.equals(eventDevice.getDeviceType())) {

@@ -35,14 +35,16 @@
                     android:id="@+id/iv_device"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="3dp"
-                    android:src="@drawable/ic_device_switch" />
+                    android:paddingLeft="4dp"
+                    android:paddingTop="6dp"
+                    android:src="@drawable/ic_device_aurora_borealis" />
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="0.30">
 
@@ -66,18 +68,6 @@
                     app:thub_ringColor="@color/colorPrimary"
                     app:thub_ringStrokeWidth="2dp" />
 
-                <TextView
-                    android:id="@+id/tv_string"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:text="Test"
-                    android:textColor="@color/color_dark_gray"
-                    android:textSize="20sp"
-                    android:visibility="visible" />
-
             </RelativeLayout>
 
         </LinearLayout>
@@ -86,7 +76,7 @@
             android:id="@+id/ll_device_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             android:padding="7dp"
             app:layout_constraintHeight_percent="0.5"

@@ -153,8 +153,8 @@ public class NodeDetailsActivity extends AppCompatActivity {
         nodeInfoList.add(getString(R.string.node_id));
         nodeInfoValueList.add(node.getNodeId());
 
-      //  nodeInfoList.add(getString(R.string.node_type));
-      //  nodeInfoValueList.add(node.getNodeType());
+        //nodeInfoList.add(getString(R.string.node_type));
+        //nodeInfoValueList.add(node.getNodeType());
 
         nodeInfoList.add(getString(R.string.node_fw_version));
         nodeInfoValueList.add(node.getFwVersion());

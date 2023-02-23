@@ -209,9 +209,6 @@ public class EspMainActivity extends AppCompatActivity {
             case R.id.action_schedules:
                 askForScheduleName();
                 break;
-            case R.id.action_scenes:
-                askForSceneName();
-                break;
             case R.id.action_automations:
                 askForAutomationName();
                 break;
@@ -322,13 +319,6 @@ public class EspMainActivity extends AppCompatActivity {
                         menuAdd.setVisible(false);
                     }
                     break;
-                case R.id.action_scenes:
-                    if (espApp.sceneMap.size() > 0) {
-                        menuAdd.setVisible(true);
-                    } else {
-                        menuAdd.setVisible(false);
-                    }
-                    break;
                 case R.id.action_user:
                     menuAdd.setVisible(false);
                     break;
@@ -348,9 +338,7 @@ public class EspMainActivity extends AppCompatActivity {
         if (!BuildConfig.isScheduleSupported) {
             menu.removeItem(R.id.action_schedules);
         }
-        if (!BuildConfig.isSceneSupported) {
-            menu.removeItem(R.id.action_scenes);
-        }
+
         if (!BuildConfig.isAutomationSupported) {
             menu.removeItem(R.id.action_automations);
         }

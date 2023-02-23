@@ -590,7 +590,7 @@ public class NotificationWorker extends Worker {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         Notification notification = new NotificationCompat.Builder(espApp, AppConstants.CHANNEL_NODE_SHARING)
-                .setSmallIcon(R.drawable.ic_notify_rainmaker)
+                .setSmallIcon(R.drawable.ic_notify_aurora)
                 .setColor(espApp.getColor(R.color.color_esp_logo))
                 .setContentTitle(title)
                 .setContentText(messageBody)
@@ -629,7 +629,7 @@ public class NotificationWorker extends Worker {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(espApp, AppConstants.CHANNEL_NODE_SHARING)
-                .setSmallIcon(R.drawable.ic_notify_rainmaker)
+                .setSmallIcon(R.drawable.ic_notify_aurora)
                 .setColor(espApp.getColor(R.color.color_esp_logo))
                 .setContentTitle(title)
                 .setContentText(contentText)
@@ -908,7 +908,7 @@ public class NotificationWorker extends Worker {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         Notification notification = new NotificationCompat.Builder(espApp, channelId)
-                .setSmallIcon(R.drawable.ic_notify_rainmaker)
+                .setSmallIcon(R.drawable.ic_notify_aurora)
                 .setColor(espApp.getColor(R.color.color_esp_logo))
                 .setContentTitle(title)
                 .setContentText(messageBody)

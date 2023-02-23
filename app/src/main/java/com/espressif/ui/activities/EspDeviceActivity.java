@@ -387,10 +387,12 @@ public class EspDeviceActivity extends AppCompatActivity {
         for (int i = 0; i < paramArrayList.size(); i++) {
 
             Param param = paramArrayList.get(i);
-            if (param.isDynamicParam()) {
-                params.add(new Param(param));
-            } else {
-                attributes.add(new Param(param));
+            if(!(param.getName().equals("Name") || param.getName().equals("Temperature"))){
+                if (param.isDynamicParam()) {
+                    params.add(new Param(param));
+                } else {
+                    attributes.add(new Param(param));
+                }
             }
         }
         arrangeParamList(params);

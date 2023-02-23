@@ -69,13 +69,13 @@ public class AutomationActionListAdapter extends RecyclerView.Adapter<Automation
             } else if (AppConstants.ESP_DEVICE_BULB_RGB.equals(device.getDeviceType())) {
                 holder.ivDevice.setImageResource(R.drawable.ic_device_bulb_rgb);
             } else if (AppConstants.ESP_DEVICE_SWITCH.equals(device.getDeviceType())) {
-                holder.ivDevice.setImageResource(R.drawable.ic_device_switch);
+                holder.ivDevice.setImageResource(R.drawable.ic_device_aurora_borealis);
             } else if (AppConstants.ESP_DEVICE_LOCK.equals(device.getDeviceType())) {
                 holder.ivDevice.setImageResource(R.drawable.ic_device_lock);
             } else if (AppConstants.ESP_DEVICE_THERMOSTAT.equals(device.getDeviceType())) {
                 holder.ivDevice.setImageResource(R.drawable.ic_device_thermostat);
             } else if (AppConstants.ESP_DEVICE_FAN.equals(device.getDeviceType())) {
-                holder.ivDevice.setImageResource(R.drawable.ic_device_fan);
+                holder.ivDevice.setImageResource(R.drawable.ic_device_moon);
             } else if (AppConstants.ESP_DEVICE_SENSOR.equals(device.getDeviceType())) {
                 holder.ivDevice.setImageResource(R.drawable.ic_device);
             } else if (AppConstants.ESP_DEVICE_TEMP_SENSOR.equals(device.getDeviceType())) {

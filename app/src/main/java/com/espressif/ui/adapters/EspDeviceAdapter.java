@@ -97,7 +97,7 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
 
             } else if (AppConstants.ESP_DEVICE_SWITCH.equals(device.getDeviceType())) {
 
-                deviceVh.ivDevice.setImageResource(R.drawable.ic_device_switch);
+                deviceVh.ivDevice.setImageResource(R.drawable.ic_device_aurora_borealis);
 
             } else if (AppConstants.ESP_DEVICE_LOCK.equals(device.getDeviceType())) {
 
@@ -109,7 +109,7 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
 
             } else if (AppConstants.ESP_DEVICE_FAN.equals(device.getDeviceType())) {
 
-                deviceVh.ivDevice.setImageResource(R.drawable.ic_device_fan);
+                deviceVh.ivDevice.setImageResource(R.drawable.ic_device_moon);
 
             } else if (AppConstants.ESP_DEVICE_SENSOR.equals(device.getDeviceType())) {
 
@@ -152,13 +152,13 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
                 if (TextUtils.isEmpty(dataType)) {
 
                     deviceVh.ivDeviceStatus.setVisibility(View.GONE);
-                    deviceVh.tvStringValue.setVisibility(View.GONE);
+                    //deviceVh.tvStringValue.setVisibility(View.GONE);
                     deviceVh.btnTrigger.setVisibility(View.GONE);
 
                 } else if (AppConstants.UI_TYPE_TOGGLE.equalsIgnoreCase(param.getUiType())) {
 
                     deviceVh.ivDeviceStatus.setVisibility(View.VISIBLE);
-                    deviceVh.tvStringValue.setVisibility(View.GONE);
+                   // deviceVh.tvStringValue.setVisibility(View.GONE);
                     deviceVh.btnTrigger.setVisibility(View.GONE);
 
                     final boolean isOn = param.getSwitchStatus();
@@ -214,7 +214,7 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
                 } else if (AppConstants.UI_TYPE_TRIGGER.equalsIgnoreCase(param.getUiType())) {
 
                     deviceVh.ivDeviceStatus.setVisibility(View.GONE);
-                    deviceVh.tvStringValue.setVisibility(View.GONE);
+                  //  deviceVh.tvStringValue.setVisibility(View.GONE);
                     deviceVh.btnTrigger.setVisibility(View.VISIBLE);
 
                     if (param.getProperties().contains(AppConstants.KEY_PROPERTY_WRITE)) {
@@ -289,7 +289,7 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
                 } else if (dataType.equalsIgnoreCase("bool") || dataType.equalsIgnoreCase("boolean")) {
 
                     deviceVh.ivDeviceStatus.setVisibility(View.VISIBLE);
-                    deviceVh.tvStringValue.setVisibility(View.GONE);
+                  //  deviceVh.tvStringValue.setVisibility(View.GONE);
                     deviceVh.btnTrigger.setVisibility(View.GONE);
 
                     String value = param.getLabelValue();
@@ -358,32 +358,32 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
 
                     deviceVh.ivDeviceStatus.setVisibility(View.GONE);
                     deviceVh.btnTrigger.setVisibility(View.GONE);
-                    deviceVh.tvStringValue.setVisibility(View.VISIBLE);
-                    deviceVh.tvStringValue.setText(param.getLabelValue());
+                   // deviceVh.tvStringValue.setVisibility(View.VISIBLE);
+                  //  deviceVh.tvStringValue.setText(param.getLabelValue());
 
                 } else if (dataType.equalsIgnoreCase("float") || dataType.equalsIgnoreCase("double")) {
 
                     deviceVh.ivDeviceStatus.setVisibility(View.GONE);
                     deviceVh.btnTrigger.setVisibility(View.GONE);
-                    deviceVh.tvStringValue.setVisibility(View.VISIBLE);
-                    deviceVh.tvStringValue.setText(param.getLabelValue());
+                  //  deviceVh.tvStringValue.setVisibility(View.VISIBLE);
+                 //   deviceVh.tvStringValue.setText(param.getLabelValue());
 
                 } else if (dataType.equalsIgnoreCase("string")) {
 
                     deviceVh.ivDeviceStatus.setVisibility(View.GONE);
                     deviceVh.btnTrigger.setVisibility(View.GONE);
-                    deviceVh.tvStringValue.setVisibility(View.VISIBLE);
-                    deviceVh.tvStringValue.setText(param.getLabelValue());
+                  //  deviceVh.tvStringValue.setVisibility(View.VISIBLE);
+                   // deviceVh.tvStringValue.setText(param.getLabelValue());
                 }
             } else {
                 deviceVh.btnTrigger.setVisibility(View.GONE);
                 deviceVh.ivDeviceStatus.setVisibility(View.GONE);
-                deviceVh.tvStringValue.setVisibility(View.GONE);
+               // deviceVh.tvStringValue.setVisibility(View.GONE);
             }
         } else {
             deviceVh.btnTrigger.setVisibility(View.GONE);
             deviceVh.ivDeviceStatus.setVisibility(View.GONE);
-            deviceVh.tvStringValue.setVisibility(View.GONE);
+          //  deviceVh.tvStringValue.setVisibility(View.GONE);
         }
 
         if (node != null && !node.isOnline()) {
@@ -404,8 +404,8 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
                 deviceVh.llOffline.setVisibility(View.VISIBLE);
                 deviceVh.ivOffline.setVisibility(View.VISIBLE);
                 String offlineText = context.getString(R.string.status_offline);
-                deviceVh.tvOffline.setText(offlineText);
-                deviceVh.tvOffline.setTextColor(context.getColor(R.color.colorAccent));
+             //   deviceVh.tvOffline.setText(offlineText);
+             //   deviceVh.tvOffline.setTextColor(context.getColor(R.color.colorAccent));
 
                 if (node.getTimeStampOfStatus() != 0) {
 
@@ -427,7 +427,7 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
                         String time = formatter.format(calendar.getTime());
                         offlineText = context.getString(R.string.offline_at) + " " + time;
                     }
-                    deviceVh.tvOffline.setText(offlineText);
+         //           deviceVh.tvOffline.setText(offlineText);
                 }
 
             } else {
@@ -454,8 +454,8 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
                 deviceVh.ivSecureLocal.setVisibility(View.INVISIBLE);
                 deviceVh.ivOffline.setVisibility(View.GONE);
             }
-            deviceVh.tvOffline.setText(R.string.local_device_text);
-            deviceVh.tvOffline.setTextColor(context.getColor(R.color.colorPrimaryDark));
+       //     deviceVh.tvOffline.setText(R.string.local_device_text);
+       //     deviceVh.tvOffline.setTextColor(context.getColor(R.color.colorPrimaryDark));
         }
 
         // implement setOnClickListener event on item view.
@@ -482,7 +482,7 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
 
     static class DeviceViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvDeviceName, tvStringValue, tvOffline;
+        TextView tvDeviceName;//, tvStringValue, tvOffline;
         ImageView ivDevice, ivDeviceStatus, ivOffline, ivSecureLocal;
         RelativeLayout llOffline;
         TapHoldUpButton btnTrigger;
@@ -494,10 +494,10 @@ public class EspDeviceAdapter extends RecyclerView.Adapter<EspDeviceAdapter.Devi
             ivDevice = itemView.findViewById(R.id.iv_device);
             llOffline = itemView.findViewById(R.id.ll_offline);
             ivOffline = itemView.findViewById(R.id.iv_offline);
-            tvOffline = itemView.findViewById(R.id.tv_offline);
+       //     tvOffline = itemView.findViewById(R.id.tv_offline);
             ivSecureLocal = itemView.findViewById(R.id.iv_secure_local);
             ivDeviceStatus = itemView.findViewById(R.id.iv_on_off);
-            tvStringValue = itemView.findViewById(R.id.tv_string);
+            //tvStringValue = itemView.findViewById(R.id.tv_string);
             btnTrigger = itemView.findViewById(R.id.btn_trigger);
         }
     }
