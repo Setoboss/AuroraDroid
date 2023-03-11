@@ -1,4 +1,5 @@
 <resources>
+	<dimen name="margin_64">31.2dp</dimen>
 	<dimen name="margin_32">15.6dp</dimen>
 	<dimen name="margin_16">8.4dp</dimen>
 	<dimen name="margin_18">9.6dp</dimen>
