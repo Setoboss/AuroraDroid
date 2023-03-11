@@ -374,10 +374,10 @@ public class EspMainActivity extends AppCompatActivity {
             pagerAdapter.addFragment(scheduleFragment);
         }
 
-        if (BuildConfig.isSceneSupported) {
+        /*if (BuildConfig.isSceneSupported) {
             sceneFragment = new ScenesFragment();
             pagerAdapter.addFragment(sceneFragment);
-        }
+        }*/
 
         if (BuildConfig.isAutomationSupported) {
             automationFragment = new AutomationFragment();
