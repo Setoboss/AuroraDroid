@@ -15,6 +15,7 @@
 package com.espressif.ui.activities;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -159,6 +160,9 @@ public class NodeDetailsActivity extends AppCompatActivity {
         nodeInfoList.add(getString(R.string.node_fw_version));
         nodeInfoValueList.add(node.getFwVersion());
 
+        nodeInfoList.add(getString(R.string.node_fw_update));
+        nodeInfoValueList.add(getString(R.string.btn_check_update));
+
         // Display time zone of device.
         ArrayList<Service> services = node.getServices();
         Service tzService = null;
@@ -220,6 +224,23 @@ public class NodeDetailsActivity extends AppCompatActivity {
                 }
             }
         }
+
+        // System services
+        boolean isSystemServiceAvailable = false;
+        for (int i = 0; i < services.size(); i++) {
+
+            Service s = services.get(i);
+            if (!TextUtils.isEmpty(s.getType()) && s.getType().equals(AppConstants.SERVICE_TYPE_SYSTEM)) {
+                isSystemServiceAvailable = true;
+                break;
+            }
+        }
+
+        if (isSystemServiceAvailable) {
+            nodeInfoList.add(getString(R.string.system_services));
+            nodeInfoValueList.add(getString(R.string.system_services));
+        }
+
         nodeDetailsAdapter.notifyDataSetChanged();
     }
 

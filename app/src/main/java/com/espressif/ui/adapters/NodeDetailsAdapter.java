@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.ContentLoadingProgressBar;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +43,7 @@ import com.espressif.NetworkApiManager;
 import com.espressif.cloudapi.ApiResponseListener;
 import com.espressif.cloudapi.CloudException;
 import com.espressif.rainmaker.R;
+import com.espressif.ui.activities.FwUpdateActivity;
 import com.espressif.ui.models.EspNode;
 import com.espressif.ui.models.Param;
 import com.espressif.ui.models.Service;
@@ -59,7 +62,6 @@ public class NodeDetailsAdapter extends RecyclerView.Adapter<NodeDetailsAdapter.
     private ArrayList<String> nodeInfoList;
     private ArrayList<String> nodeInfoValueList;
     private ArrayList<SharingRequest> sharingRequests;
-    private SharedUserAdapter userAdapter;
     private EspNode node;
 
     public NodeDetailsAdapter(Activity context, ArrayList<String> nodeInfoList, ArrayList<String> nodeValueList,
@@ -84,11 +86,21 @@ public class NodeDetailsAdapter extends RecyclerView.Adapter<NodeDetailsAdapter.
     public void onBindViewHolder(@NonNull final NodeDetailViewHolder nodeDetailVh, int position) {
 
         // set the data in items
-        nodeDetailVh.tvNodeInfoLabel.setText(nodeInfoList.get(position));
+        String nodeInfoLabel = nodeInfoList.get(position);
 
-        if (nodeInfoList.get(position).equals(context.getString(R.string.node_id))) {
+        if (node.isOnline() || !nodeInfoLabel.equals(context.getString(R.string.system_services))) {
+            nodeDetailVh.tvNodeInfoLabel.setText(nodeInfoLabel);
+        } else {
+            if (nodeInfoLabel.equals(context.getString(R.string.system_services))) {
+                String sysServiceStr = nodeInfoLabel + " (" + context.getString(R.string.status_offline) + ")";
+                nodeDetailVh.tvNodeInfoLabel.setText(sysServiceStr);
+            }
+        }
+
+        if (nodeInfoLabel.equals(context.getString(R.string.node_id))) {
 
             nodeDetailVh.rvSharedUsers.setVisibility(View.GONE);
+            nodeDetailVh.rlTimezone.setVisibility(View.GONE);
             nodeDetailVh.dropDownTimezone.setVisibility(View.GONE);
             nodeDetailVh.tvNodeInfoValue.setVisibility(View.VISIBLE);
             nodeDetailVh.ivCopy.setVisibility(View.VISIBLE);
@@ -104,34 +116,98 @@ public class NodeDetailsAdapter extends RecyclerView.Adapter<NodeDetailsAdapter.
                 }
             });
 
-        } else if (nodeInfoList.get(position).equals(context.getString(R.string.node_shared_with))
-                || nodeInfoList.get(position).equals(context.getString(R.string.node_shared_by))) {
+        } else if (nodeInfoLabel.equals(context.getString(R.string.node_fw_update))) {
+
+            nodeDetailVh.rvSharedUsers.setVisibility(View.GONE);
+            nodeDetailVh.dropDownTimezone.setVisibility(View.GONE);
+            nodeDetailVh.tvNodeInfoValue.setVisibility(View.VISIBLE);
+            nodeDetailVh.ivCopy.setImageResource(R.drawable.ic_side_arrow);
+            nodeDetailVh.ivCopy.setVisibility(View.VISIBLE);
+            nodeDetailVh.tvNodeInfoValue.setText(nodeInfoValueList.get(position));
+
+            nodeDetailVh.tvNodeInfoValue.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, FwUpdateActivity.class);
+                    intent.putExtra(AppConstants.KEY_NODE_ID, node.getNodeId());
+                    context.startActivity(intent);
+                }
+            });
+
+            nodeDetailVh.ivCopy.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, FwUpdateActivity.class);
+                    intent.putExtra(AppConstants.KEY_NODE_ID, node.getNodeId());
+                    context.startActivity(intent);
+                }
+            });
+
+        } else if (nodeInfoLabel.equals(context.getString(R.string.node_shared_with))
+                || nodeInfoLabel.equals(context.getString(R.string.node_shared_by))) {
 
             nodeDetailVh.rvSharedUsers.setVisibility(View.VISIBLE);
             nodeDetailVh.tvNodeInfoValue.setVisibility(View.GONE);
+            nodeDetailVh.rlTimezone.setVisibility(View.GONE);
             nodeDetailVh.dropDownTimezone.setVisibility(View.GONE);
             nodeDetailVh.ivCopy.setVisibility(View.GONE);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
             nodeDetailVh.rvSharedUsers.setLayoutManager(linearLayoutManager);
-            userAdapter = new SharedUserAdapter(context, node, sharingRequests, false);
+            DividerItemDecoration itemDecor = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
+            nodeDetailVh.rvSharedUsers.addItemDecoration(itemDecor);
+            SharedUserAdapter userAdapter = new SharedUserAdapter(context, node, sharingRequests, false);
             nodeDetailVh.rvSharedUsers.setAdapter(userAdapter);
 
-        } else if (nodeInfoList.get(position).equals(context.getString(R.string.pending_requests))) {
+        } else if (nodeInfoLabel.equals(context.getString(R.string.pending_requests))) {
 
             nodeDetailVh.rvSharedUsers.setVisibility(View.VISIBLE);
             nodeDetailVh.tvNodeInfoValue.setVisibility(View.GONE);
+            nodeDetailVh.rlTimezone.setVisibility(View.GONE);
             nodeDetailVh.dropDownTimezone.setVisibility(View.GONE);
             nodeDetailVh.ivCopy.setVisibility(View.GONE);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
             nodeDetailVh.rvSharedUsers.setLayoutManager(linearLayoutManager);
-            userAdapter = new SharedUserAdapter(context, node, sharingRequests, true);
+            DividerItemDecoration itemDecor = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
+            nodeDetailVh.rvSharedUsers.addItemDecoration(itemDecor);
+            SharedUserAdapter userAdapter = new SharedUserAdapter(context, node, sharingRequests, true);
             nodeDetailVh.rvSharedUsers.setAdapter(userAdapter);
 
-        } else if (nodeInfoList.get(position).equals(context.getString(R.string.node_timezone))) {
+        } else if (nodeInfoLabel.equals(context.getString(R.string.system_services))) {
+
+            nodeDetailVh.rvSharedUsers.setVisibility(View.VISIBLE);
+            nodeDetailVh.tvNodeInfoValue.setVisibility(View.GONE);
+            nodeDetailVh.rlTimezone.setVisibility(View.GONE);
+            nodeDetailVh.dropDownTimezone.setVisibility(View.GONE);
+            nodeDetailVh.ivCopy.setVisibility(View.GONE);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+            nodeDetailVh.rvSharedUsers.setLayoutManager(linearLayoutManager);
+            DividerItemDecoration itemDecor = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
+            nodeDetailVh.rvSharedUsers.addItemDecoration(itemDecor);
+
+            ArrayList<Service> services = node.getServices();
+            Service systemService = null;
+            for (Service service : services) {
+                if (service.getType().equals(AppConstants.SERVICE_TYPE_SYSTEM)) {
+                    systemService = service;
+                }
+            }
+
+            if (systemService != null) {
+                SystemServiceAdapter adapter = new SystemServiceAdapter(context, node, systemService);
+                nodeDetailVh.rvSharedUsers.setAdapter(adapter);
+            } else {
+                Log.e(TAG, "System service is not available for the node : " + node.getNodeId());
+            }
+
+        } else if (nodeInfoLabel.equals(context.getString(R.string.node_timezone))) {
 
             nodeDetailVh.rvSharedUsers.setVisibility(View.GONE);
             nodeDetailVh.tvNodeInfoValue.setVisibility(View.GONE);
@@ -283,10 +359,12 @@ public class NodeDetailsAdapter extends RecyclerView.Adapter<NodeDetailsAdapter.
         } else if (!TextUtils.isEmpty(nodeInfoValueList.get(position))) {
 
             nodeDetailVh.rvSharedUsers.setVisibility(View.GONE);
+            nodeDetailVh.rlTimezone.setVisibility(View.GONE);
             nodeDetailVh.dropDownTimezone.setVisibility(View.GONE);
             nodeDetailVh.tvNodeInfoValue.setVisibility(View.VISIBLE);
             nodeDetailVh.ivCopy.setVisibility(View.GONE);
             nodeDetailVh.tvNodeInfoValue.setText(nodeInfoValueList.get(position));
+            nodeDetailVh.tvNodeInfoValue.setOnClickListener(null);
         }
     }
 

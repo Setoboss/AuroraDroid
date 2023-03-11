@@ -143,6 +143,23 @@ Add `isAutomationSupported=false` in `local.properties` file to disable this fea
 
 Note : Time series feature requires support in firmware. It will be available only for the parameters who have "time_series" property.
 
+### System service
+
+System service allows a primary user of the node to perform node operations like:
+- Reboot
+- Wi-Fi reset
+- Factory reset
+
+Note : System service feature requires support in firmware. It will be available for nodes that has "esp.service.system" configured.
+
+### OTA Update
+
+- Checks if firmware update is available for nodes that requires user approval.
+- Push firmware update to nodes remotely when user provide approval using the app.
+
+OTA update is optional and disabled by default. It can be enabled/disabled by setting true/false value of `isOtaSupported` field in `local.properties`.
+Add `isOtaSupported=false` in `local.properties` file to enable this feature.
+
 ### Alexa App to App Linking
 
 This account linking flow enables users to link their Alexa user identity with their RainMaker identity by starting from Rainmaker app. When they start the account linking flow from the app, users can:

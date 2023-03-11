@@ -92,6 +92,10 @@ public class AppConstants {
             + AppConstants.CURRENT_VERSION + "/user/nodes/tsdata";
     public static final String URL_USER_NODE_AUTOMATION = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
             + AppConstants.CURRENT_VERSION + "/user/node_automation";
+    public static final String URL_NODE_OTA_UPDATE = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/ota_update";
+    public static final String URL_NODE_OTA_STATUS = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/ota_status";
 
     // UI Types of Device
     public static final String UI_TYPE_TOGGLE = "esp.ui.toggle";
@@ -120,6 +124,7 @@ public class AppConstants {
     public static final String SERVICE_TYPE_SCENES = "esp.service.scenes";
     public static final String SERVICE_TYPE_TIME = "esp.service.time";
     public static final String SERVICE_TYPE_LOCAL_CONTROL = "esp.service.local_control";
+    public static final String SERVICE_TYPE_SYSTEM = "esp.service.system";
 
     // Param Types
     public static final String PARAM_TYPE_NAME = "esp.param.name";
@@ -132,6 +137,9 @@ public class AppConstants {
     public static final String PARAM_TYPE_TZ_POSIX = "esp.param.tz_posix";
     public static final String PARAM_TYPE_LOCAL_CONTROL_POP = "esp.param.local_control_pop";
     public static final String PARAM_TYPE_LOCAL_CONTROL_TYPE = "esp.param.local_control_type";
+    public static final String PARAM_TYPE_REBOOT = "esp.param.reboot";
+    public static final String PARAM_TYPE_FACTORY_RESET = "esp.param.factory-reset";
+    public static final String PARAM_TYPE_WIFI_RESET = "esp.param.wifi-reset";
 
     // Keys used to pass data between activities and to store data in SharedPreference.
     public static final String KEY_DEVICE_NAME_PREFIX = "device_prefix";
@@ -167,6 +175,9 @@ public class AppConstants {
     public static final String KEY_NUM_INTERVALS = "num_intervals";
     public static final String KEY_NUM_RECORDS = "num_records";
     public static final String KEY_TIMEZONE = "timezone";
+    public static final String KEY_OTA_JOB_ID = "ota_job_id";
+    public static final String KEY_OTA_DETAILS = "ota_details";
+    public static final String KEY_OTA_AVAILABLE = "ota_available";
 
     // Keys used in JSON responses and used to pass data between activities.
     public static final String KEY_NAME = "name";
@@ -279,6 +290,7 @@ public class AppConstants {
     public static final String KEY_AUTOMATION_TRIGGER_ACTIONS = "automation_trigger_actions";
     public static final String KEY_AUTOMATION = "automation";
     public static final String KEY_LOAD_AUTOMATION_PAGE = "load_automation";
+    public static final String KEY_SYSTEM = "System";
 
     public static final String KEY_OPERATION = "operation";
     public static final String KEY_OPERATION_ADD = "add";
@@ -345,4 +357,13 @@ public class AppConstants {
     public static final int ACTION_SELECTED_NONE = 0;
     public static final int ACTION_SELECTED_PARTIAL = 1;
     public static final int ACTION_SELECTED_ALL = 2;
+
+    public static final String OTA_STATUS_TRIGGERED = "triggered";
+    public static final String OTA_STATUS_IN_PROGRESS = "in-progress";
+    public static final String OTA_STATUS_STARTED = "started";
+    public static final String OTA_STATUS_COMPLETED = "completed";
+    public static final String OTA_STATUS_SUCCESS = "success";
+    public static final String OTA_STATUS_REJECTED = "rejected";
+    public static final String OTA_STATUS_FAILED = "failed";
+    public static final String OTA_STATUS_UNKNOWN = "unknown";
 }
